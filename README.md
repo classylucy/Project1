@@ -1,5 +1,17 @@
 
-Summary of the Architecture: This document provides a comprehensive architectural overview of our system, ensuring robustness, scalability, and resilience. It outlines core components, use cases, security measures, and future-proofing strategies for seamless system performance.
+Summary of the Architecture: This project is a full-stack application with CI/CD pipelines for Dev, Test, and Production environments. This document provides a comprehensive architectural overview of our system, ensuring robustness, scalability, and resilience. It outlines core components, use cases, security measures, and future-proofing strategies for seamless system performance.
+
+### Project Structure:
+- `backend/` - Backend application
+- `frontend/` - Frontend application
+- `infra/` - Infrastructure and Cloud Services
+- `database/` - Database configurations
+- `.github/workflows/` - GitHub Actions workflows
+
+### CI/CD Pipelines:
+- `dev.yml` → Runs on the `dev` branch for development deployments.
+- `test.yml` → Runs on the `test` branch for testing.
+- `main.yml` → Runs on `main` for production deployment
 
 📦 project1-root
 ├── 📁 frontend       # Next.js frontend
