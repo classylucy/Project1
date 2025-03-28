@@ -1,0 +1,14 @@
+@startuml ArchitectureDiagram
+
+package "Deployment" {
+    [Azure App Service Slots (Blue-Green)]
+    [Canary Deployment]
+}
+
+[Next.js (TypeScript)] --> [NestJS API]
+[NestJS API] --> [MongoDB + Prisma]
+[NestJS API] --> [Docker]
+[Docker] --> [Azure App Service Slots (Blue-Green)]
+[Docker] --> [Canary Deployment]
+
+@enduml
