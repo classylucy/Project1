@@ -1,0 +1,62 @@
+name: Dev Deployment
+
+on:
+  push:
+    branches:
+      - dev  # Runs when pushing to the 'dev' branch
+
+jobs:
+  frontend:
+    name: Deploy Frontend (Blue-Green)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "your-azure-app-service-name"
+          package: frontend/build
+
+  backend:
+    name: Deploy Backend (Canary)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+
+      - name: Run Tests
+        run: |
+          cd backend
+          pytest
+
+      - name: Deploy Backend (Canary)
+        run: |
+          # Replace with actual deployment script
+          echo "Deploying backend to Canary environment..."
